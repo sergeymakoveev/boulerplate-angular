@@ -1,0 +1,16 @@
+<a routerLink="/" class="logo"></a>
+<nav >
+    <a routerLink="/main" routerLinkActive="active">Главная</a>
+    <a routerLink="/users" routerLinkActive="active">Пользователи</a>
+    <div class="help-dropdown">
+        <a>Помощь</a>
+        <div class="help-dropdown-content">
+            <a><span>Разработчикам</span></a>
+            <a><span>FAQ</span></a>
+        </div>
+    </div>
+</nav>
+<button
+    class="sidenav"
+    (click)="layout.toggleSidenav(true)">
+</button>

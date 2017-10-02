@@ -1,0 +1,31 @@
+$app-min-width: 767px;
+$app-toolbar-height: 100px;
+$app-sidenav-width: 280px;
+
+@mixin respond-to($media) {
+    @if $media == _small {
+        @media screen and (max-width: 1279px) {
+            @content
+        }
+    }
+    @if $media == logo-big_ {
+        @media screen and (min-width: 1500px) {
+            @content
+        }
+    }
+    @if $media == large_ {
+        @media screen and (min-width: 1560px) {
+            @content
+        }
+    }
+    @if $media == large_xlarge {
+        @media screen and (min-width: 1560px) and (max-width: 2499px) {
+            @content
+        }
+    }
+    @if $media == xlarge_ {
+        @media screen and (min-width: 2500px) {
+            @content
+        }
+    }
+}

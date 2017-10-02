@@ -1,0 +1,188 @@
+// :host {
+//     display:flex;
+//     flex-direction: column;
+//     flex-wrap: nowrap;
+//     height: 100%;
+// }
+
+@import '../../../variables.scss';
+
+@mixin button-close {
+    button[close] {
+        display: block;
+        position: absolute;
+        background-color: transparent;
+        border: 0 none;
+        top: 21px;
+        right: 28px;
+        width: 32px;
+        height: 32px;
+        z-index: 1;
+        outline: 0 none;
+    }
+}
+
+
+app-root {
+
+    min-width: $app-min-width;
+
+    app-sidenav {
+        min-width: $app-min-width;
+        justify-content: flex-end;
+        display: none;
+        nav {
+            width: 100%;
+            position: absolute;
+            justify-content: flex-end;
+            display: flex;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            z-index: 25;
+        }
+        &.show {
+            display: flex!important;
+        }
+    }
+
+    app-layout {
+        display:flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        height: 100%;
+        min-height: 100vh;
+        min-width: $app-min-width;
+        app-toolbar {
+            height: $app-toolbar-height;
+        }
+        [page] {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: stretch;
+            height: calc(100% - #{$app-toolbar-height});
+            app-coverpop {
+                @include button-close();
+                height: 100%;
+                width: 100%;
+                position: relative;
+                & ~ app-filter,
+                & ~ app-coverflow,
+                & ~ app-content {
+                    display: none!important;
+                }
+            }
+            app-coverflow {
+                @include button-close();
+                width: 50%;
+                order: 1;
+                position: relative;
+                & ~ app-filter {
+                    display: none;
+                }
+            }
+            app-filter {
+                width: 25%;
+            }
+            app-content {
+                $tcs-group-actions-toolbar-height: 72px;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+            }
+
+        }
+
+        &.merchants, &.merchant-create, &.merchant-edit {
+            padding-top: 100px;
+
+            app-toolbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                border-bottom: 1px solid #e6e8eb;
+                background: #fff;
+                z-index: 20;
+            }
+        }
+    }
+}
+
+
+@include respond-to(_small) {
+    app-root {
+        app-layout {
+            overflow: hidden;
+            [page] {
+                flex-direction: column;
+                flex-wrap: nowrap;
+                overflow-y: scroll;
+                margin-right: -15px;
+                app-coverflow {
+                    width: 100%;
+                    min-height: 100vh;
+                    & ~ app-filter {
+                        display: block;
+                    }
+                    & ~ app-content {
+                        display: none;
+                    }
+                }
+                app-filter {
+                    width: 100%;
+                }
+                app-content {
+                    min-height: 100vh;
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
+
+
+@include respond-to(large_) {
+    app-root {
+        app-layout {
+            padding-right: $app-sidenav-width;
+            app-toolbar {
+                button.sidenav {
+                    display: none!important;
+                }
+            }
+        }
+        app-sidenav {
+            display: flex!important;
+            nav {
+                width: $app-sidenav-width;
+            }
+        }
+    }
+}
+
+
+@include respond-to(large_xlarge) {
+    app-root {
+        app-layout {
+            [page] {
+                app-coverflow {
+                    width: 44%;
+                }
+            }
+        }
+    }
+}
+
+
+@include respond-to(xlarge_) {
+    app-root {
+        app-layout {
+            [page] {
+                app-coverflow {
+                    width: 33%;
+                }
+            }
+        }
+    }
+}
