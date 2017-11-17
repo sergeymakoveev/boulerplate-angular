@@ -1,7 +1,8 @@
 {
-  "name": "cosmos",
+  "name": "boulerplate-angular",
   "version": "0.0.0",
-  "license": "MIT",
+  "license": "Commercial",
+  "author": "Sergey Makoveev <sergey.makoveev@codeinside.ru> (http://sergey.makoveev.info)",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
